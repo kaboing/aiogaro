@@ -17,7 +17,7 @@ VERSION = "0.0.2"
 
 # This call to setup() does all the work
 setup(
-    name="aigaro",
+    name="aiogaro",
     version=VERSION,
     description="Library to access Garo Chargeboxes",
     long_description=long_description,
