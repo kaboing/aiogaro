@@ -1,8 +1,8 @@
 import aiohttp
-import asyncio
 import datetime
 import ipaddress
 import logging
+from decimal import Decimal
 
 DEFAULT_RESOLUTION = "DAY"
 METER_SERIAL = "DEFAULT"
@@ -24,15 +24,15 @@ class Chargebox:
         self.ip_addr = ip_addr
         self.serial = serial
 
-    async def GetCurrentEnergyUsage(self) -> float:
+    async def GetCurrentEnergyUsage(self) -> Decimal:
 
         from_date = datetime.datetime.utcnow() - datetime.timedelta(days = 1)
         to_date = datetime.datetime.utcnow() + datetime.timedelta(days = 1)
 
         resp_dict = await self.__getFromChargeBox(from_date, to_date, DEFAULT_RESOLUTION)
         if resp_dict is not None: 
-            _LOGGER.debug("device reports {0:.1f} kWh".format(float(resp_dict["stopValue"])))
-            return float(resp_dict["stopValue"])
+            _LOGGER.debug("device reports {0:.1f} kWh".format(Decimal(resp_dict["stopValue"])))
+            return Decimal(resp_dict["stopValue"])
         return 0
 
     async def __getFromChargeBox(self, from_date, to_date, resolution) -> dict:

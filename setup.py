@@ -13,7 +13,7 @@ HERE = path.abspath(path.dirname(__file__))
 with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 # This call to setup() does all the work
 setup(
@@ -35,7 +35,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Operating System :: OS Independent"
     ],
-    packages=["aigaro"],
+    packages=["aiogaro"],
     include_package_data=True,
     install_requires=list(val.strip() for val in open("requirements.txt")),
 )
