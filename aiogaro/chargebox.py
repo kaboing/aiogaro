@@ -24,7 +24,7 @@ class Chargebox:
         self.ip_addr = ip_addr
         self.serial = serial
 
-    async def GetCurrentEnergyUsage(self) -> Decimal | None:
+    async def GetCurrentEnergyUsage(self) -> Decimal:
 
         from_date = datetime.datetime.utcnow() - datetime.timedelta(days = 1)
         to_date = datetime.datetime.utcnow() + datetime.timedelta(days = 1)
@@ -33,7 +33,6 @@ class Chargebox:
         if resp_dict is not None: 
             _LOGGER.debug("device reports {0:.1f} kWh".format(Decimal(resp_dict["stopValue"])))
             return Decimal(resp_dict["stopValue"])
-        return None
 
     async def __getFromChargeBox(self, from_date, to_date, resolution) -> dict:
         timeout = aiohttp.ClientTimeout(total=30)
