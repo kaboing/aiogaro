@@ -13,7 +13,7 @@ HERE = path.abspath(path.dirname(__file__))
 with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 
 # This call to setup() does all the work
 setup(
